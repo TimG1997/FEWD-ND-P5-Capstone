@@ -9,7 +9,7 @@ const dateHolder = document.getElementById('date');
 const tempHolder = document.getElementById('temp');
 const contentHolder = document.getElementById('content');
 
-const baseURL = "http://api.openweathermap.org/data/2.5/weather?zip="; // default country is USA
+const baseURL = "http://api.openweathermap.org/data/2.5/weather?units=imperial&zip="; // default country is USA
 
 const retrieveData = async (url = '') => {
     const zipCode = zipCodeField.value;
@@ -26,7 +26,7 @@ const postData = async (url = '', data = {}) => {
     const userResponse = feelingsField.value;
     const temperature = data.main.temp;
     let d = new Date();
-    let date = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
+    let date = (d.getMonth() + 1) + '.' + d.getDate() + '.' + d.getFullYear();
 
     data = {
         temperature,
@@ -50,18 +50,14 @@ const postData = async (url = '', data = {}) => {
     }
 };
 
-const updateUI = async (data) => {
+const updateUI = async () => {
     try {
-        console.log(data);
-        if (data && data.length > 0) {
-            const mostRecentEntry = data[data.length - 1];
+        const response = await fetch('/data');
+        const data = await response.json();
 
-            tempHolder.innerHTML = mostRecentEntry.temperature;
-            dateHolder.innerHTML = mostRecentEntry.date;
-            contentHolder.innerHTML = mostRecentEntry.userResponse;
-        } else {
-            tempHolder.innerHTML = "No data available";
-        }
+        tempHolder.innerHTML = data.temperature;
+        dateHolder.innerHTML = data.date;
+        contentHolder.innerHTML = data.userResponse;
 
     } catch (error) {
         console.log("error", error);
@@ -71,18 +67,6 @@ const updateUI = async (data) => {
 generateButton.addEventListener('click', () => {
         retrieveData(baseURL)
             .then((data) => postData('addData', data))
-            .then((data) => updateUI(data));
+            .then(updateUI);
     }
 );
-
-const init = async () => {
-    const request = await fetch('/data');
-    try {
-        return await request.json();
-    } catch (error) {
-        console.log("error", error);
-    }
-};
-
-init()
-    .then((data) => updateUI(data));

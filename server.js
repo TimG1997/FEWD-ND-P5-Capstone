@@ -1,5 +1,5 @@
 /* Empty JS object to act as endpoint for all routes */
-projectData = [];
+projectData = {};
 
 // Express to run server and routes
 const express = require('express');
@@ -24,15 +24,10 @@ const port = 3000;
 const server = app.listen(port, () => console.log(`running on localhost: ${port}`));
 
 app.get('/data', (req, res) => {
-    res.send(projectData)
+    res.send(projectData);
 });
 
 app.post('/addData', (req, res) => {
-    projectData.push({
-            temperature: req.body.temperature,
-            date: req.body.date,
-            userResponse: req.body.userResponse
-        }
-    );
+    projectData = req.body;
     res.send(projectData);
 });
