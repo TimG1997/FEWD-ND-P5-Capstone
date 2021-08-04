@@ -1,5 +1,5 @@
 /* Global Variables */
-const API_KEY = "&appid=c4e0ac78285d56f51c87425b033faaaa";
+const API_KEY = "&appid=...";
 
 const generateButton = document.getElementById('generate');
 const zipCodeField = document.getElementById('zip');
