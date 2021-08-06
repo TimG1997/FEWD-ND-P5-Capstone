@@ -1,0 +1,53 @@
+#grid-container{
+  display: grid;
+  grid-template-areas:
+          "header header header header"
+          "main main main main"
+          "footer footer footer footer";
+  grid-gap: 15px;
+}
+
+header{
+  grid-area: header;
+  text-align: center;
+}
+
+#main-container{
+  grid-area: main;
+}
+
+#travel-info{
+  display: flex;
+  flex-basis: available;
+  flex-direction: column;
+  align-items: center;
+
+  #travel-form{
+    margin-top: 50px;
+  }
+
+  .travel-form-field-container{
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .travel-form-field-container-label{
+    text-align: center;
+    padding-bottom: 5px;
+    padding-top: 5px;
+  }
+
+  #submit-trip-button{
+    margin-top: 25px;
+  }
+
+  .weather-header{
+    margin-top: 25px;
+  }
+}
+
+footer {
+  margin-top: 50px;
+  grid-area: footer;
+  text-align: center;
+}

@@ -1,0 +1,19 @@
+$primary-bg: #310B0B;
+$primary: #EEB76B;
+$secondary-bg: #9C3D54;
+$secondary: #E2703A;
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: $primary-bg;
+    color: $primary;
+}
+
+input {
+    background-color: $secondary-bg;
+    color: $secondary;
+    padding: 10px 20px;
+    outline: none;
+    border-radius: 20px;
+    border: none;
+}
