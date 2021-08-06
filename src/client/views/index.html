@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Travel Planner App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+<div id="grid-container">
+    <header>
+        <h1>Travel Planner App</h1>
+    </header>
+    <div id="main-container">
+        <div id="travel-info">
+            <form id="travel-form" action="javascript:" onsubmit="Client.handleSubmit(this)" class="form">
+                <div class="travel-form-field-container">
+                    <div class="travel-form-field-container-label">
+                        <label for="from">From</label>
+                    </div>
+                    <input type="text" name="from" id="from" placeholder="City">
+                </div>
+
+                <div class="travel-form-field-container">
+                    <div class="travel-form-field-container-label">
+                        <label for="to">To</label>
+                    </div>
+                    <input type="text" name="to" id="to" placeholder="City">
+                </div>
+
+
+                <div class="travel-form-field-container">
+                    <div class="travel-form-field-container-label">
+                        <label for="depart">Departure</label>
+                    </div>
+                    <input type="date" name="depart" id="depart">
+                </div>
+
+                <div class="travel-form-field-container">
+                    <div class="travel-form-field-container-label">
+                        <label for="return">Return</label>
+                    </div>
+                    <input type="date" name="return" id="return">
+                </div>
+
+                <div>
+                    <input type="submit" value="Search" id="submit-trip-button">
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer>
+        This is a footer
+    </footer>
+</div>
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js');
+        });
+    }
+</script>
+</body>
+</html>
