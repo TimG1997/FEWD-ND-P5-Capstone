@@ -1,6 +1,7 @@
 $primary-bg: #310B0B;
 $primary: #EEB76B;
 $secondary-bg: #9C3D54;
+$secondary-bg-light: #c6667d;
 $secondary: #E2703A;
 
 body {
@@ -16,4 +17,13 @@ input {
     outline: none;
     border-radius: 20px;
     border: none;
+
+    &:hover{
+        background-color: $secondary-bg-light;
+    }
+
+    &:focus{
+        color: $secondary-bg;
+        background-color: $secondary;
+    }
 }
