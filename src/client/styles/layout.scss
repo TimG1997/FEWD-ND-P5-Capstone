@@ -23,26 +23,26 @@ header{
   align-items: center;
 
   #travel-form{
-    margin-top: 50px;
+    margin-top: 2rem;
   }
 
   .travel-form-field-container{
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 
   .travel-form-field-container-label{
     text-align: center;
-    padding-bottom: 5px;
-    padding-top: 5px;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
   }
 
   #submit-trip-button{
-    margin-top: 25px;
+    margin-top: 1rem;
   }
 
   .weather-header{
-    margin-top: 25px;
+    margin-top: 1rem;
   }
 }
 
@@ -52,7 +52,7 @@ header{
 }
 
 footer {
-  margin-top: 50px;
+  margin-top: 2rem;
   grid-area: footer;
   text-align: center;
 }
