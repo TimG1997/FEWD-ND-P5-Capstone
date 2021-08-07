@@ -4,13 +4,20 @@ const API_ENDPOINTS = {
     WEATHER: '/weather',
     IMAGE: '/image'
 };
+const fromElement = document.getElementById('from');
+const toElement = document.getElementById('to');
+const departElement = document.getElementById('depart');
+const returnElement = document.getElementById('return');
 
-export const handleSubmit = async (inputData) => {
+
+export const handleSubmit = async (event) => {
+    event.preventDefault();
+
     let userData = {
-        to: inputData.to.value,
-        from: inputData.from.value,
-        startDate: inputData.depart.value,
-        endDate: inputData.return.value
+        to: fromElement.value,
+        from: toElement.value,
+        startDate: departElement.value,
+        endDate: returnElement.value
     };
     await Client.validateInput(userData);
 
@@ -44,4 +51,8 @@ export const handleSubmit = async (inputData) => {
     Object.assign(projectData, weatherData);
 
     Client.updateUI(projectData);
+
 };
+
+const travelForm = document.getElementById('travel-form');
+travelForm.addEventListener('submit', (e) => Client.handleSubmit(e));
