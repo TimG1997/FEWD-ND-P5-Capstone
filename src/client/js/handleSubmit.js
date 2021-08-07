@@ -13,6 +13,7 @@ const returnElement = document.getElementById('return');
 export const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // validate the user input
     let userData = {
         to: fromElement.value,
         from: toElement.value,
@@ -21,22 +22,16 @@ export const handleSubmit = async (event) => {
     };
     await Client.validateInput(userData);
 
-    let projectData = Client.calculateTripDates(userData.startDate, userData.endDate);
-
+    // fetch the coordinates for a specified location
+    let tripData = Client.calculateTripDates(userData.startDate, userData.endDate);
     const coordinates = await Client.fetchData(BASE_URL + API_ENDPOINTS.LOCATION, { location: userData.to})
 
-    console.log(coordinates);
-
+    // fetch the current weather or weather forecast (when the trip is in the future)
     const weather = await Client.fetchData(BASE_URL + API_ENDPOINTS.WEATHER, { lat: coordinates.lat, long: coordinates.long });
-
-    console.log(weather);
-
     let forecastDay = 0;
-    if(projectData.isSoon) {
-        forecastDay = projectData.daysToDeparture;
+    if(tripData.isSoon) {
+        forecastDay = tripData.daysToDeparture;
     }
-
-    console.log("Forecast day: " + forecastDay);
 
     const weatherData = {
         city: weather.city_name,
@@ -45,12 +40,12 @@ export const handleSubmit = async (event) => {
         forecast: weather.data[forecastDay].weather.description
     }
 
+    // fetch an image of the destination
     const image = await Client.fetchData(BASE_URL + API_ENDPOINTS.IMAGE, { city: userData.to });
-    projectData.image_url = image.hits[0].largeImageURL;
+    tripData.image_url = image.hits[0].largeImageURL;
 
-    Object.assign(projectData, weatherData);
-
-    Client.updateUI(projectData);
+    Object.assign(tripData, weatherData);
+    Client.updateUI(tripData);
 
 };
 
