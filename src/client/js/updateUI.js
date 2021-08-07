@@ -7,8 +7,8 @@ export const updateUI = (data) => {
     travelInfoElement.innerHTML = `
         <div class="results-wrapper">
             
-            <div class="travel-image">
-                <img src="${data.image_url}" alt="${data.city}">
+            <div>
+                <img class="travel-image" src="${data.image_url}" alt="${data.city}">
             </div>
             
             <div class="travel-result">
