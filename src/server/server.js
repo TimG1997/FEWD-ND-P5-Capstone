@@ -1,3 +1,4 @@
+const coordinatesMapper = require("./coordinatesMapper");
 const fetch = require("node-fetch");
 const dotenv = require('dotenv');
 const express = require('express');
@@ -21,13 +22,6 @@ app.use(cors());
 app.use(express.static('dist'));
 
 app.listen(PORT, () => console.log(`Server running on localhost: ${PORT}`));
-
-const coordinatesMapper = async (data) => {
-    return {
-        lat: data.geonames[0].lat,
-        long: data.geonames[0].lng
-    }
-};
 
 const fetchInfoLog = (url) => console.log(`Fetched data from ${url}`);
 
@@ -54,7 +48,7 @@ app.get('/', function (req, res) {
 app.post('/location', async (req, res) => {
     const url = `${API_BASE_URL.GEONAMES}/searchJSON?q=${req.body.location}&maxRows=1&username=${process.env.GEOCODES_NAME}`;
 
-    await fetchDataFromApi(url, req, res, coordinatesMapper);
+    await fetchDataFromApi(url, req, res, coordinatesMapper.map);
 })
 
 app.post('/weather', async (req, res) => {

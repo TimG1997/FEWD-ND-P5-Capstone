@@ -1,12 +1,9 @@
-import "../server.js";
+import {map} from '../coordinatesMapper';
 import {describe, expect} from "@jest/globals";
-const rewire = require('rewire');
 
-describe("The coordinates mapper should work correctly", () => {
-    const server = rewire('../server.js');
-    const coordinatesMapper = server.__get__('coordinatesMapper');
+describe("The coordinates mapper should work correctly",  () => {
 
-    test('coordinates should be converted into lat/long object', () => {
+    test('coordinates should be converted into lat/long object', async () => {
         const dataToMap = {
             geonames: [{
                 lat: 1,
@@ -14,11 +11,10 @@ describe("The coordinates mapper should work correctly", () => {
             }]
         }
 
-        coordinatesMapper(dataToMap).then(mappedData => {
-            expect(mappedData).toEqual({
-                lat: 1,
-                long: 2
-            });
-        })
+        const mappedData = await map(dataToMap);
+        expect(mappedData).toEqual({
+            lat: 1,
+            long: 2
+        });
     });
 });
